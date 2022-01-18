@@ -50,6 +50,9 @@ RUN apt-get -qqy update \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+    && dpkg --add-architecture i386
+    && apt update
+    && apt install wine64 wine32
     && wget https://www.otohits.net/dl/OtohitsApp_5068_linux_portable.tar.gz > /dev/null \
     && mkdir OtohitsApp \
     && cd OtohitsApp \
