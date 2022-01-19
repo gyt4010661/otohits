@@ -76,11 +76,11 @@ RUN mkdir -p /usr/share/wine/mono \
 	&& curl -SL 'http://sourceforge.net/projects/wine/files/Wine%20Mono/$WINE_MONO_VERSION/wine-mono-$WINE_MONO_VERSION.msi/download' -o /usr/share/wine/mono/wine-mono-$WINE_MONO_VERSION.msi \
 	&& chmod +x /usr/share/wine/mono/wine-mono-$WINE_MONO_VERSION.msi
 
-# Wine really doesn't like to be run as root, so let's use a non-root user
-USER xclient
-ENV HOME /home/xclient
-ENV WINEPREFIX /home/xclient/.wine
-ENV WINEARCH win32
+RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
+  && tar xzvf docker-17.04.0-ce.tgz \
+  && mv docker/docker /usr/local/bin \
+  && rm -r docker docker-17.04.0-ce.tgz \
+  && args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
 
 
 
