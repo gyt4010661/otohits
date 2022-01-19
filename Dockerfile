@@ -82,8 +82,7 @@ ENV HOME /home/xclient
 ENV WINEPREFIX /home/xclient/.wine
 ENV WINEARCH win32
 
-# Use xclient's home dir as working dir
-WORKDIR /home/xclient
+
 
 # COPY conf.d/* /etc/supervisor/conf.d/
 
