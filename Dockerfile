@@ -50,15 +50,11 @@ RUN apt-get -qqy update \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-    && apt update
-    && apt install wine64 wine32
-    && wget https://www.otohits.net/dl/OtohitsApp_5068_linux_portable.tar.gz > /dev/null \
-    && mkdir OtohitsApp \
-    && cd OtohitsApp \
-    && echo "/login:073e8ec9-7a11-400e-a4d7-d7ef1d31ce0b" > otohits.ini \
-    && echo "/autoupdate" >> otohits.ini \
-    && tar -xzf ../OtohitsApp_5068_linux_portable.tar.gz \
-    && ./otohits-app \
+    && dpkg --add-architecture i386 \
+    && wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add - \ 
+    && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' \
+    && apt update \
+    && apt install --install-recommends winehq-stable \
 
 # COPY conf.d/* /etc/supervisor/conf.d/
 
