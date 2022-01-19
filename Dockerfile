@@ -58,6 +58,7 @@ RUN apt-get -qqy update \
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		tzdata \
+		7z \
 		curl \
 		unzip \
 		ca-certificates
