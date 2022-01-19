@@ -50,7 +50,6 @@ RUN apt-get -qqy update \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-    && dpkg --add-architecture i386 \
     && wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add - \ 
     && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' \
     && apt update \
