@@ -57,43 +57,20 @@ RUN apt-get -qqy update \
 # Install some tools required for creating the image
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
+		tzdata \
 		curl \
 		unzip \
 		ca-certificates
 
 
-# Brave
-# manually installing libgl1 to fix some browser crashes
-# and to reduce ubiquitous "Aw, Snap!" errors ("Error code: 6"):
-# > [[...]:angle_platform_impl.cc(43)] Display.cpp:833 (initialize): ANGLE Display::initialize error 12289: Could not dlopen libGL.so.1: [...]
-# > [[...]:gl_surface_egl.cc(773)] EGL Driver message (Critical) eglInitialize: Could not dlopen libGL.so.1: [...]
-# > [[...]:gl_surface_egl.cc(1322)] eglInitialize OpenGL failed with error EGL_NOT_INITIALIZED, trying next display type
-# > [[...]:gl_initializer_linux_x11.cc(160)] GLSurfaceEGL::InitializeOneOff failed.
-# > [[...]:viz_main_impl.cc(150)] Exiting GPU process due to errors during initialization
+# Docker
 
-# https://brave.com/linux/#release-channel-installation
-RUN apt-get update \
-    && apt-get install --yes --no-install-recommends \
-        ca-certificates \
-        fonts-tlwg-loma-ttf \
-        gnupg \
-        libgl1 \
-    && apt-key adv --keyserver keyserver.ubuntu.com \
-        --recv-keys D8BAD4DE7EE17AF52A834B2D0BB75829C2D4E821 \
-    && rm -rf /var/lib/apt/lists/* \
-    && echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" \
-        > /etc/apt/sources.list.d/brave-browser-release.list \
-    && useradd --create-home browser
+ARG '--user root -v /var/run/docker.sock:/var/run/docker.sock'
 
-ARG BRAVE_BROWSER_PACKAGE_VERSION=1.34.80
-RUN apt-get update \
-    && apt-cache policy brave-browser \
-    && apt-get install --yes --no-install-recommends \
-        brave-browser=$BRAVE_BROWSER_PACKAGE_VERSION \
-    && rm -rf /var/lib/apt/lists/* \
-    && find / -xdev -type f -perm /u+s -exec chmod -c u-s {} \; \
-    && find / -xdev -type f -perm /g+s -exec chmod -c g-s {} \;
-
+RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
+  && tar xzvf docker-17.04.0-ce.tgz \
+  && mv docker/docker /usr/local/bin \
+  && rm -r docker docker-17.04.0-ce.tgz
 
 
 
