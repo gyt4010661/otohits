@@ -50,10 +50,30 @@ RUN apt-get -qqy update \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-    && wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add - \ 
-    && apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' \
-    && apt update \
-    && apt install --install-recommends winehq-stable \
+    
+# Install some tools required for creating the image
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
+		curl \
+		unzip \
+		ca-certificates
+
+# Install wine and related packages
+RUN dpkg --add-architecture i386 \
+		&& apt-get update \
+		&& apt-get install -y --no-install-recommends \
+				wine \
+				wine32 \
+		&& rm -rf /var/lib/apt/lists/*
+
+# Use the latest version of winetricks
+RUN curl -SL 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks' -o /usr/local/bin/winetricks \
+		&& chmod +x /usr/local/bin/winetricks
+
+# Get latest version of mono for wine
+RUN mkdir -p /usr/share/wine/mono \
+	&& curl -SL 'http://sourceforge.net/projects/wine/files/Wine%20Mono/$WINE_MONO_VERSION/wine-mono-$WINE_MONO_VERSION.msi/download' -o /usr/share/wine/mono/wine-mono-$WINE_MONO_VERSION.msi \
+	&& chmod +x /usr/share/wine/mono/wine-mono-$WINE_MONO_VERSION.msi
 
 # COPY conf.d/* /etc/supervisor/conf.d/
 
