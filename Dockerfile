@@ -94,14 +94,6 @@ RUN apt-get update \
     && find / -xdev -type f -perm /u+s -exec chmod -c u-s {} \; \
     && find / -xdev -type f -perm /g+s -exec chmod -c g-s {} \;
 
-USER browser
-VOLUME /home/browser
-# --disable-dev-shm-usage to fix some "Aw, Snap!" errors and video playback,
-# apparently by resolving:
-# > ERROR:broker_posix.cc(46)] Received unexpected number of handles
-# https://github.com/WPO-Foundation/wptagent/issues/327#issuecomment-614086842
-CMD ["brave-browser", "--no-sandbox"]
-
 
 
 
