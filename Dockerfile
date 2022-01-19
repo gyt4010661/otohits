@@ -76,16 +76,12 @@ RUN mkdir -p /usr/share/wine/mono \
 	&& curl -SL 'http://sourceforge.net/projects/wine/files/Wine%20Mono/$WINE_MONO_VERSION/wine-mono-$WINE_MONO_VERSION.msi/download' -o /usr/share/wine/mono/wine-mono-$WINE_MONO_VERSION.msi \
 	&& chmod +x /usr/share/wine/mono/wine-mono-$WINE_MONO_VERSION.msi
 
-ARG UID_GID=1000
-ENV UID_GID=${UID_GID}
 
-RUN dnf install -y dnf-plugins-core libcanberra mesa-dri-drivers pulseaudio-libs libv4l \
- && dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/ \
- && rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc \
- && dnf install -y brave-browser
-
-RUN groupadd -g ${UID_GID} -r brave && useradd -u ${UID_GID} -r -g brave -G audio,video brave \
-    && mkdir -p /home/brave/Downloads && chown -R brave:brave /home/brave
+# Brave
+	curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg && \
+	echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|tee /etc/apt/sources.list.d/brave-browser-release.list && \
+	apt update && \
+	apt install brave-browser -y && \
 
 
 
