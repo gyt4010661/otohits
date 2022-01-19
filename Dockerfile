@@ -51,6 +51,7 @@ RUN apt-get -qqy update \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
     
+
 # Install some tools required for creating the image
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -74,6 +75,15 @@ RUN curl -SL 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src
 RUN mkdir -p /usr/share/wine/mono \
 	&& curl -SL 'http://sourceforge.net/projects/wine/files/Wine%20Mono/$WINE_MONO_VERSION/wine-mono-$WINE_MONO_VERSION.msi/download' -o /usr/share/wine/mono/wine-mono-$WINE_MONO_VERSION.msi \
 	&& chmod +x /usr/share/wine/mono/wine-mono-$WINE_MONO_VERSION.msi
+
+# Wine really doesn't like to be run as root, so let's use a non-root user
+USER xclient
+ENV HOME /home/xclient
+ENV WINEPREFIX /home/xclient/.wine
+ENV WINEARCH win32
+
+# Use xclient's home dir as working dir
+WORKDIR /home/xclient
 
 # COPY conf.d/* /etc/supervisor/conf.d/
 
