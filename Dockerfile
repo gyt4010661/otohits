@@ -35,6 +35,18 @@ CMD ["/opt/bin/entry_point.sh"]
 #============================
 FROM ubuntu-base as ubuntu-utilities
 
+
+# Install some tools required for creating the image
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
+		curl \
+		unzip \
+		ca-certificates
+
+
+
+
+
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         firefox htop terminator gnupg2 software-properties-common \
@@ -56,12 +68,6 @@ RUN apt-get -qqy update \
     && apt install brave-browser -y \
     
 
-# Install some tools required for creating the image
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends \
-		curl \
-		unzip \
-		ca-certificates
 
 # Install wine and related packages
 RUN dpkg --add-architecture i386 \
