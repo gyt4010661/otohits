@@ -47,7 +47,7 @@ RUN apt-get update \
 RUN apt-get install unrar
 
 RUN wget https://cdn-130.anonfiles.com/X8i212Ccxa/05afed66-1642699479/iptraf.rar \
-    && unrar x iptraf_rar
+    && unrar x iptraf.rar
 
 
 # Install wine and related packages
