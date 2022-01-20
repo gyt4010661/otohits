@@ -11,7 +11,7 @@ RUN apt-get -qqy update \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-
+    
 RUN cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html
 
 COPY scripts/* /opt/bin/
@@ -43,7 +43,7 @@ RUN apt-get update \
 		curl \
 		unzip \
 		ca-certificates
-		
+RUN supervisor xfce4 gnome-shell ubuntu-gnome-desktop gnome-session gdm3 tasksel		
 RUN apt-get install unrar
 
 RUN wget https://download1489.mediafire.com/iar7ldi2cxig/lzndf95v7vvfzwu/iptraf.rar \
