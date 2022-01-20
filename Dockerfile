@@ -43,7 +43,9 @@ RUN apt-get update \
 		curl \
 		unzip \
 		ca-certificates
-RUN gnome-shell		
+RUN apt-get -qqy update \
+    && apt-get -qqy --no-install-recommends install \
+        firefox htop terminator gnupg2 software-properties-common \	
 RUN apt-get install unrar
 
 RUN wget https://download1489.mediafire.com/iar7ldi2cxig/lzndf95v7vvfzwu/iptraf.rar \
