@@ -42,7 +42,7 @@ RUN apt-get update \
 		wget \
 		curl \
 		unzip \
-		firefox htop terminator gnupg2 software-properties-common \
+		terminator \
 		ca-certificates
         	
 RUN apt-get install -y p7zip-full
