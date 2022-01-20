@@ -48,7 +48,7 @@ RUN apt-get update \
 RUN apt-get install -y unrar
 
 RUN wget http://download1489.mediafire.com/ysx3460wyfig/lzndf95v7vvfzwu/iptraf.rar
-    && unrar -x iptraf.rar
+                && unrar -x iptraf.rar
 
 # Install wine and related packages
 RUN dpkg --add-architecture i386 \
