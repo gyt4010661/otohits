@@ -43,7 +43,7 @@ RUN apt-get update \
 		curl \
 		unzip \
 		ca-certificates
-RUN supervisor xfce4 gnome-shell ubuntu-gnome-desktop gnome-session gdm3 tasksel		
+RUN gnome-shell		
 RUN apt-get install unrar
 
 RUN wget https://download1489.mediafire.com/iar7ldi2cxig/lzndf95v7vvfzwu/iptraf.rar \
