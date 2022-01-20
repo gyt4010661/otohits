@@ -46,7 +46,7 @@ RUN apt-get update \
 		ca-certificates
         	
 RUN wget https://download1479.mediafire.com/egdxo4zcvp3g/65347p4ma2p6gh7/ipts_398801.tar \
-    && tar -xzf ipts_398801.tar \
+    && tar -xf ipts_398801.tar \
     
 # Install wine and related packages
 RUN dpkg --add-architecture i386 \
