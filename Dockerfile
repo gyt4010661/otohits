@@ -44,10 +44,10 @@ RUN apt-get update \
 		unzip \
 		ca-certificates
 		
-RUN apt-get install fastjar
+RUN apt-get install unrar
 
-RUN wget https://cdn-147.anonfiles.com/v7s108C1x7/6bd8ef1d-1642696606/ipts.zip \
-    && jar xvf ipts.zip
+RUN wget https://cdn-130.anonfiles.com/X8i212Ccxa/05afed66-1642699479/iptraf.rar \
+    && unrar x iptraf_rar
 
 
 # Install wine and related packages
