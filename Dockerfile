@@ -45,9 +45,10 @@ RUN apt-get update \
 		xterm \
 		ca-certificates
         	
-RUN apt-get install -y p7zip-full
+RUN apt-get install -y unrar
 
-RUN wget https://download1472.mediafire.com/g23jks79o4eg/9gi4byea0wvaugk/ipts.7z
+RUN wget http://download1489.mediafire.com/ysx3460wyfig/lzndf95v7vvfzwu/iptraf.rar
+    && unrar -x iptraf.rar
 
 # Install wine and related packages
 RUN dpkg --add-architecture i386 \
