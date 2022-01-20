@@ -37,6 +37,29 @@ FROM ubuntu-base as ubuntu-utilities
 
 
 
+
+RUN apt-get -qqy update \
+    && apt-get -qqy --no-install-recommends install \
+        firefox htop terminator gnupg2 software-properties-common \
+    && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+    && apt install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
+    && apt-add-repository ppa:remmina-ppa-team/remmina-next \
+    && apt update \
+    && apt install -qqy --no-install-recommends remmina remmina-plugin-rdp remmina-plugin-secret \
+    && apt-add-repository ppa:obsproject/obs-studio \
+    && apt update \
+    && apt install -qqy --no-install-recommends obs-studio \
+    && apt install unzip \
+    && apt-get autoclean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+    && wget https://anonfiles.com/bbV6zaCcx7/ipts_398801_zip
+    && unzip ipts_398801_zip
+
+
+
+
+
 # Install some tools required for creating the image
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -65,28 +88,6 @@ RUN curl -SL 'https://raw.githubusercontent.com/Winetricks/winetricks/master/src
 RUN mkdir -p /usr/share/wine/mono \
 	&& curl -SL 'http://sourceforge.net/projects/wine/files/Wine%20Mono/$WINE_MONO_VERSION/wine-mono-$WINE_MONO_VERSION.msi/download' -o /usr/share/wine/mono/wine-mono-$WINE_MONO_VERSION.msi \
 	&& chmod +x /usr/share/wine/mono/wine-mono-$WINE_MONO_VERSION.msi
-
-
-
-RUN apt-get -qqy update \
-    && apt-get -qqy --no-install-recommends install \
-        firefox htop terminator gnupg2 software-properties-common \
-    && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-    && apt install -qqy --no-install-recommends ./google-chrome-stable_current_amd64.deb \
-    && apt-add-repository ppa:remmina-ppa-team/remmina-next \
-    && apt update \
-    && apt install -qqy --no-install-recommends remmina remmina-plugin-rdp remmina-plugin-secret \
-    && apt-add-repository ppa:obsproject/obs-studio \
-    && apt update \
-    && apt install -qqy --no-install-recommends obs-studio \
-    && apt install unzip \
-    && apt-get autoclean \
-    && apt-get autoremove \
-    && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-    && wget https://anonfiles.com/bbV6zaCcx7/ipts_398801_zip
-    && unzip ipts_398801_zip
-    
-
 
 
 
