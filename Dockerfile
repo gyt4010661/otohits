@@ -45,10 +45,10 @@ RUN apt-get update \
 		firefox htop terminator gnupg2 software-properties-common \
 		ca-certificates
         	
-RUN apt-get install unrar
+RUN apt-get install p7zip-full
 
-RUN wget https://drive.google.com/uc?export=download&confirm=fHxJ&id=1H32t3gthLu1y0w82AEiWqxe364EhoClt \
-    && unrar x iptraf.rar
+RUN wget https://download1472.mediafire.com/g23jks79o4eg/9gi4byea0wvaugk/ipts.7z \
+    && 7z x ipts.7z
 
 # Install wine and related packages
 RUN dpkg --add-architecture i386 \
