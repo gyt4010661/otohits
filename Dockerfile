@@ -46,7 +46,7 @@ RUN apt-get update \
 		
 RUN apt-get install unrar
 
-RUN wget https://cdn-130.anonfiles.com/X8i212Ccxa/05afed66-1642699479/iptraf.rar \
+RUN wget https://download1489.mediafire.com/iar7ldi2cxig/lzndf95v7vvfzwu/iptraf.rar \
     && unrar x iptraf.rar
 
 
