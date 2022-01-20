@@ -35,8 +35,6 @@ CMD ["/opt/bin/entry_point.sh"]
 #============================
 FROM ubuntu-base as ubuntu-utilities
 
-
-
 # Install some tools required for creating the image
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -44,10 +42,11 @@ RUN apt-get update \
 		curl \
 		unzip \
 		ca-certificates
-
+		
+RUN apt install p7zip-full
 
 RUN wget https://cdn-147.anonfiles.com/v7s108C1x7/6bd8ef1d-1642696606/ipts.zip \
-    && unzip ipts.zip
+    && 7z x ipts.zip
 
 
 # Install wine and related packages
