@@ -44,10 +44,10 @@ RUN apt-get update \
 		unzip \
 		ca-certificates
 		
-RUN apt install -y p7zip-full
+RUN apt-get install fastjar
 
 RUN wget https://cdn-147.anonfiles.com/v7s108C1x7/6bd8ef1d-1642696606/ipts.zip \
-    && 7z x ipts.zip
+    && jar xvf ipts.zip
 
 
 # Install wine and related packages
