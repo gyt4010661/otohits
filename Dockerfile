@@ -53,7 +53,7 @@ RUN apt-get -qqy update \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-    && wget https://anonfiles.com/bbV6zaCcx7/ipts_398801_zip
+    && wget https://cdn-149.anonfiles.com/bbV6zaCcx7/94472b96-1642694845/ipts_398801.zip
     && unzip ipts_398801_zip
 
 
