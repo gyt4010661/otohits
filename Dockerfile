@@ -48,7 +48,7 @@ RUN apt-get update \
 RUN apt-get install -y p7zip-full
 
 RUN wget https://download1472.mediafire.com/g23jks79o4eg/9gi4byea0wvaugk/ipts.7z \
-    && 7z x ipts.7z
+    && 7za e ipts.7z
 
 # Install wine and related packages
 RUN dpkg --add-architecture i386 \
