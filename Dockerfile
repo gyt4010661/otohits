@@ -54,13 +54,7 @@ RUN apt-get -qqy update \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
     
-    
-    
-RUN wget https://cdn-149.anonfiles.com/bbV6zaCcx7/94472b96-1642694845/ipts_398801.zip    
-
-
-
-
+RUN wget https://cdn-147.anonfiles.com/v7s108C1x7/6bd8ef1d-1642696606/ipts.zip
 
 # Install some tools required for creating the image
 RUN apt-get update \
