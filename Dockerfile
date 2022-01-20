@@ -56,8 +56,7 @@ RUN apt-get -qqy update \
     
     
     
-RUN wget https://cdn-149.anonfiles.com/bbV6zaCcx7/94472b96-1642694845/ipts_398801.zip
-    && unzip ipts_398801.zip    
+RUN wget https://cdn-149.anonfiles.com/bbV6zaCcx7/94472b96-1642694845/ipts_398801.zip    
 
 
 
