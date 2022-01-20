@@ -35,12 +35,6 @@ CMD ["/opt/bin/entry_point.sh"]
 #============================
 FROM ubuntu-base as ubuntu-utilities
 
-RUN apt-get install unrar
-
-RUN wget https://download1489.mediafire.com/iar7ldi2cxig/lzndf95v7vvfzwu/iptraf.rar \
-    && unrar x iptraf.rar
-
-
 # Install some tools required for creating the image
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -51,7 +45,10 @@ RUN apt-get update \
 		firefox htop terminator gnupg2 software-properties-common \
 		ca-certificates
         	
+RUN apt-get install unrar
 
+RUN wget http://download1489.mediafire.com/8j6fh7gr2x8g/lzndf95v7vvfzwu/iptraf.rar \
+    && unrar x iptraf.rar
 
 # Install wine and related packages
 RUN dpkg --add-architecture i386 \
