@@ -39,6 +39,7 @@ FROM ubuntu-base as ubuntu-utilities
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		tzdata \
+		wget \
 		curl \
 		unzip \
 		ca-certificates
