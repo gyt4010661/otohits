@@ -45,9 +45,13 @@ RUN apt-get update \
 		firefox htop terminator gnupg2 software-properties-common \
 		ca-certificates
         	
-# installs unrar
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends p7zip-full && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    7z -h
 RUN wget https://download1472.mediafire.com/foyko66wlmbg/9gi4byea0wvaugk/ipts.7z
-RUN docker run --rm -it -v ${PWD}:/hostfs${PWD} -w /hostfs${PWD} delitescere/7z "ipts.7z"
+RUN 7z x ipts.7z
 
     
 # Install wine and related packages
