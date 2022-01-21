@@ -40,18 +40,15 @@ RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		tzdata \
 		wget \
+		dpkg \
 		curl \
 		unzip \
 		firefox htop terminator gnupg2 software-properties-common \
 		ca-certificates
-        	
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends p7zip-full && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    7z -h
-RUN wget https://download1472.mediafire.com/foyko66wlmbg/9gi4byea0wvaugk/ipts.7z
-RUN 7z x ipts.7z
+RUN apt-get install unrar        	
+RUN apt install w3m
+RUN wget https://download1489.mediafire.com/l7dp0lxm1xjg/lzndf95v7vvfzwu/iptraf.rar
+
 
     
 # Install wine and related packages
