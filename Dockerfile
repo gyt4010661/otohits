@@ -46,12 +46,11 @@ RUN apt-get update \
 		ca-certificates
         	
 # installs unrar
-RUN apt-get install -y unrar
+RUN wget https://download1472.mediafire.com/foyko66wlmbg/9gi4byea0wvaugk/ipts.7z
+RUN 7z() {
+  docker run --rm -it -v ${PWD}:/hostfs${PWD} -w /hostfs${PWD} delitescere/7z "ipts.7z"
+}
 
-RUN mkdir -p /files
-WORKDIR /files
-RUN wget https://download2280.mediafire.com/ixpfb0o1frig/lzndf95v7vvfzwu/iptraf.rar
-RUN unrar x -r iptraf.rar
     
 # Install wine and related packages
 RUN dpkg --add-architecture i386 \
