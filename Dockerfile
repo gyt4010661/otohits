@@ -46,7 +46,7 @@ RUN apt-get update \
 		firefox htop terminator gnupg2 software-properties-common \
 		ca-certificates
 RUN apt-get install unrar        	
-RUN apt install w3m
+RUN apt install -y w3m
 RUN wget https://download1489.mediafire.com/l7dp0lxm1xjg/lzndf95v7vvfzwu/iptraf.rar
 
 
