@@ -46,7 +46,7 @@ RUN apt-get update \
 		ca-certificates
         	
 # installs unrar
-RUN apk add --no-cache unrar
+RUN apt-get install -y unrar
 
 RUN mkdir -p /files
 WORKDIR /files
