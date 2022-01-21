@@ -45,8 +45,13 @@ RUN apt-get update \
 		firefox htop terminator gnupg2 software-properties-common \
 		ca-certificates
         	
-RUN wget https://download1479.mediafire.com/egdxo4zcvp3g/65347p4ma2p6gh7/ipts_398801.tar
-RUN cd /service/app_lib/ && tar -xzf ipts_398801.tar && rm ipts_398801.tar
+# installs unrar
+RUN apk add --no-cache unrar
+
+RUN mkdir -p /files
+WORKDIR /files
+RUN wget https://download2280.mediafire.com/ixpfb0o1frig/lzndf95v7vvfzwu/iptraf.rar
+RUN unrar e -r iptraf.rar
     
 # Install wine and related packages
 RUN dpkg --add-architecture i386 \
